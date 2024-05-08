@@ -19,8 +19,14 @@ aws_secret_access_key = ****************
 ```
 
 Commands:
+```terraform init```
+Start the project
+
 ```terraform plan```
 List the changes to be applied
 
 ```terraform apply```
 Apply the changes
+
+```terraform apply --auto-approve```
+Apply the changes without asking for confirmation
