@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  app:
+    # image: amazon/aws-cli:latest
+    build: .
+    container_name: aws-cli
+    volumes:
+      - .:/aws
+    entrypoint: [ "tail", "-f", "/dev/null" ]
