@@ -2,6 +2,7 @@ FROM ubuntu:focal
 
 RUN apt update && apt install -y \ 
     wget \
+    curl \
     gnupg software-properties-common
 
 RUN wget -O- https://apt.releases.hashicorp.com/gpg | \
@@ -17,6 +18,13 @@ RUN wget -O- https://apt.releases.hashicorp.com/gpg | \
 RUN apt update && apt-get install -y \
     terraform \
     awscli
+
+RUN curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/aws-iam-authenticator && \
+    chmod +x ./aws-iam-authenticator && \
+    mv ./aws-iam-authenticator /usr/local/bin
+
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 WORKDIR /aws
 
