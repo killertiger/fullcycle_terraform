@@ -1,6 +1,6 @@
 # Create security group to allow all traffic to the internet
 resource "aws_security_group" "sg" {
-  vpc_id = var.vpc.id
+  vpc_id = var.vpc_id
   egress {
     from_port       = 0
     to_port         = 0
