@@ -6,9 +6,6 @@ resource "aws_vpc" "new-vpc" {
 }
 
 data "aws_availability_zones" "available" {}
-# output "az" {
-#     value = "${data.aws_availability_zones.available.names}"
-# }
 
 resource "aws_subnet" "subnets" {
     count = 2
@@ -44,21 +41,3 @@ resource "aws_route_table_association" "new-rtb-association" {
     route_table_id = aws_route_table.new-rtb.id
     subnet_id = aws_subnet.subnets.*.id[count.index]
 }
-
-# resource "aws_subnet" "new_subnet_1" {
-#     availability_zone = "us-east-1a"
-#     vpc_id = aws_vpc.new-vpc.id
-#     cidr_block = "10.0.0.0/24"
-#     tags = {
-#         Name = "${var.prefix}-subnet-1"
-#     }
-# }
-
-# resource "aws_subnet" "new_subnet_2" {
-#     availability_zone = "us-east-1b"
-#     vpc_id = aws_vpc.new-vpc.id
-#     cidr_block = "10.0.1.0/24"
-#     tags = {
-#         Name = "${var.prefix}-subnet-2"
-#     }
-# }
